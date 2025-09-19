@@ -25,10 +25,18 @@ export default {
                   "@babel/preset-react" // React JSX 문법을 자바스크립트로 변환
                 ],
               }
-            }
+            },
         ],
         exclude: /node_modules/ // node_modules 폴더는 제외
-      }
+      },
+      {
+        test: /\.css$/,
+        // 로더는 배열의 뒤에서부터 앞으로 순서대로 실행돼요. 즉, css-loader가 먼저 실행되고, 그 다음 style-loader가 실행되는 거예요.
+          use: [
+            'style-loader', // 자바스크립트로 불러온 CSS를 <style> 태그로 만들어서 DOM에 주입
+            'css-loader' // 자바스크립트에서 CSS 파일을 불러올 수 있게 해줌
+          ]
+        }
     ]
   },
   resolve: {
